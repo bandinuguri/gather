@@ -25,10 +25,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'npm'
+          # cache: 'npm' 제거 (package-lock.json이 없으므로 오류 발생 방지)
 
       - name: Install dependencies
-        run: npm ci
+        # 'npm ci'는 lock 파일이 필수이므로, 'npm install'로 변경하여 유연하게 설치
+        run: npm install
 
       - name: Build
         run: npm run build
